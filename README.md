@@ -1,10 +1,15 @@
 SPOTIFY TELEGRAM BOT - "WrappedStats"
 
 it allows you:
+
 to get your listen-top artists, songs;
+
 to get all your listend tracks(from time you start using this bot)
+
 to get some recomendations;
+
 and more will be added soon.
+
 
 the main advantage on other "spotify-stats" apps - its free.
 
