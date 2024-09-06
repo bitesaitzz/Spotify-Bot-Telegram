@@ -755,5 +755,6 @@ if __name__=='__main__':
             schedule.run_pending()
         except Exception as e:
             print(f"Error in main: {e}")
+            print(BOT_TOKEN)
             time.sleep(5)
             continue
