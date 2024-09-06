@@ -9,6 +9,8 @@ from dotenv import load_dotenv
 import psycopg2
 load_dotenv()
 
+
+ADMIN_ID = str(os.getenv("ADMIN_ID"))
 CLIENT_ID = str(os.getenv("CLIENT_ID"))
 CLIENT_SECRET = str(os.getenv("CLIENT_SECRET"))
 main_url = "http://bitesaitzz.pythonanywhere.com"
@@ -392,7 +394,7 @@ class autorizationSpot:
         conn.close()
         checked_users = []
         for user in users:
-            if(self.checkIfLogin(user[0])):
+            if(self.checkIfLogin(user[0]) and user[0] == ADMIN_ID):
                 checked_users.append(user)
         return checked_users
 
