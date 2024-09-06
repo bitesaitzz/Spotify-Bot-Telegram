@@ -349,12 +349,11 @@ def weekly_stats():
     for user in all_users:
         user_id = user[0]
         tracks_data = authSp.get_listened_weekly_tracks(user_id)
-        tracks_data = sorted(tracks_data, key=lambda x: x[2], reverse=True)
+        if (len(tracks_data) <= 1):
+            return
         info_artists = 'Your weekly stats in Artists:\n'
         info_tracks = 'Your weekly stats in Tracks:\n'
         top_tracks, top_artists, top_artist_url, top_track_url = analize_weekly(user_id, tracks_data)
-        if(top_tracks == "You have no listened tracks" or top_artists == None):
-            continue
         info_artists += top_artists
         info_tracks += top_tracks
         if (top_artist_url != None):
@@ -362,6 +361,8 @@ def weekly_stats():
         if (top_track_url != None):
             messageUtils.send_long_message_with_photo(user_id, info_tracks, top_track_url)
     authSp.deleteWeekListened()
+
+
 
 
 def analize_weekly(user_id, tracks_data):
@@ -376,7 +377,7 @@ def analize_weekly(user_id, tracks_data):
     tracks_data = sorted(tracks_data, key=lambda x: x[2], reverse=True)
 
 
-    #split tracks_data into parts by 50 valles
+    #split tracks_data into parts by 50 values
     parts = [tracks_data[i:i + 50] for i in range(0, len(tracks_data), 50)]
     it = 1
     sp_token = authSp.get_sp_token(user_id)
@@ -432,9 +433,9 @@ def analize_weekly(user_id, tracks_data):
         if artist_info['images']:
             top_artist_url = artist_info['images'][0]['url']
         else:
-            top_artist_url = "No photo available for this artist."
+            top_artist_url = None
     else:
-        top_artist_url = "Artist not found."
+        top_artist_url = None
     #top_artist_url = first_artist['images'][0]['url']
     return top_tracks, top_artists, top_artist_url, top_track_url
 
@@ -744,7 +745,7 @@ def run_schedule():
 if __name__=='__main__':
     scheduler = BlockingScheduler()
     scheduler.add_job(sm.update_users_listened, 'cron', hour='0,3,6,9,12,15,18,21', minute=0)
-    scheduler.add_job(weekly_stats, 'cron', hour=10, minute=11)
+    scheduler.add_job(weekly_stats, 'cron', hour=10, minute=44)
     scheduler.add_job(get_song_of_the_day, 'cron', hour=0, minute=2)
     scheduler_thread = threading.Thread(target=scheduler.start)
     scheduler_thread.start()
