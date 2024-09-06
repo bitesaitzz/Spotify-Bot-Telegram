@@ -21,7 +21,7 @@ load_dotenv()
 main_url = "http://bitesaitzz.pythonanywhere.com"
 BOT_TOKEN = str(os.getenv("BOT_TOKEN"))
 CLIENT_ID = str(os.getenv("CLIENT_ID"))
-ADMIN_ID = str(os.getenv("ADMIN_ID"))
+ADMIN_ID = os.getenv("ADMIN_ID")
 CLIENT_SECRET = str(os.getenv("CLIENT_SECRET"))
 bot = telebot.TeleBot(BOT_TOKEN)
 DATABASE_URL = os.environ['DATABASE_URL']
