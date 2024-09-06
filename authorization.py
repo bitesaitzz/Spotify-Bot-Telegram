@@ -394,7 +394,7 @@ class autorizationSpot:
         conn.close()
         checked_users = []
         for user in users:
-            if(self.checkIfLogin(user[0]) and user[0] == ADMIN_ID):
+            if(self.checkIfLogin(user[0])):
                 checked_users.append(user)
         return checked_users
 

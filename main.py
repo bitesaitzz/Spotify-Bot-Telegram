@@ -745,7 +745,7 @@ def run_schedule():
 if __name__=='__main__':
     scheduler = BlockingScheduler()
     scheduler.add_job(sm.update_users_listened, 'cron', hour='0,3,6,9,12,15,18,21', minute=0)
-    scheduler.add_job(weekly_stats, 'cron', hour=10, minute=44)
+
     scheduler.add_job(get_song_of_the_day, 'cron', hour=0, minute=2)
     scheduler_thread = threading.Thread(target=scheduler.start)
     scheduler_thread.start()
