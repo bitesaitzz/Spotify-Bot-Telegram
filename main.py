@@ -492,13 +492,7 @@ def song_of_the_day_function(message):
         bot.send_message(message.chat.id, "Song of the day is not available now. Try later", reply_markup=main_keyboard)
 
 
-@bot.message_handler(commands=['erika'])
-def erika_currently_listen(message):
-    if message.chat.id != ADMIN_ID:
-        return
-    if sm.get_currently_playing(message, '904522858') == False:
-        bot.send_message(message.chat.id, "Erika is not listening now")
-    return
+
 
 def get_recomendation_type(message):
     if user_states.get(message.chat.id) == 'get_recomendation_type':

@@ -55,7 +55,7 @@ class spotifyManager:
                 bot.send_message(message.chat.id,
                                  "Error: User not registered in the Dashboard(your email is not approved). Please change your /email")
             else:
-                bot.send_message(message.chat.id, f"An error occurred: {e}")
+                print( f"An error occurred: {e}")
 
     def get_recomendation_artists_by_basis(self, message, time_range):
         if user_states.get(message.chat.id) == 'get_recomendation_artists_by_basis':
@@ -94,7 +94,7 @@ class spotifyManager:
                 bot.send_message(message.chat.id,
                                  "Error: User not registered in the Dashboard(your email is not approved). Please change your /email")
             else:
-                bot.send_message(message.chat.id, f"An error occurred: {e}")
+                print(f"An error occurred: {e}")
 
     def get_recomendation_tracks_by_basis(self, message, time_range):
         if user_states.get(message.chat.id) == 'get_recomendation_tracks_by_basis':
@@ -138,7 +138,7 @@ class spotifyManager:
                 bot.send_message(message.chat.id, "Too many requests. Please try again later",
                                  reply_markup=main_keyboard)
             else:
-                bot.send_message(message.chat.id, f"An error occurred: {e}")
+                print( f"An error occurred: {e}")
 
     def get_recently_played(self, message, number):
         if user_states.get(message.chat.id) == 'get_recently_played':
@@ -165,7 +165,7 @@ class spotifyManager:
                 bot.send_message(message.chat.id, "Too many requests. Please try again later",
                                  reply_markup=main_keyboard)
             else:
-                bot.send_message(message.chat.id, f"An error occurred: {e}")
+                print(f"An error occurred: {e}")
 
     def add_playlist(self, message, recomendation_data):
         if user_states.get(message.chat.id) == 'add_playlist':
@@ -207,7 +207,7 @@ class spotifyManager:
                 bot.send_message(message.chat.id,
                                  "Error: User not registered in the Dashboard(your email is not approved). Please change your /email")
             else:
-                bot.send_message(message.chat.id, f"An error occurred: {e}")
+                print(f"An error occurred: {e}")
 
     def get_currently_playing(self, message, user_id):
         print(f"{datetime.now()} - Getting currently playing by {user_id}")
@@ -263,8 +263,7 @@ class spotifyManager:
                 bot.send_message(message.chat.id,
                                  "Error: User not registered in the Dashboard(your email is not approved). "
                                  "Please change your /email")
-            else:
-                bot.send_message(message.chat.id, f"An error occurred: {e}")
+
 
     def update_users_listened(self):
         print (f"{datetime.now()} - Updating listened tracks")
@@ -296,10 +295,10 @@ class spotifyManager:
                                      "Error: User not registered in the Dashboard(your email is not approved). Please change your /email")
                 elif e.http_status == 429:
                     bot.send_message(user[0], "Too many requests. Please try again later")
-                else:
-                    bot.send_message(user[0], f"An error occurred: {e}")
+
             except Exception as e:
-                bot.send_message(user[0], f"An error occurred: {e}")
+                print( f"An error occurred: {e}")
+
             time.sleep(1)
     def song_of_the_day(self):
         print (f"{datetime.now()} - Getting song of the day")
